@@ -4,6 +4,8 @@
   "description": "real time todo list that handles tasks for many users",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
+    "watch": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,20 @@
   "bugs": {
     "url": "https://github.com/alisayed987/real-time-todo-list/issues"
   },
-  "homepage": "https://github.com/alisayed987/real-time-todo-list#readme"
+  "homepage": "https://github.com/alisayed987/real-time-todo-list#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mysql2": "^3.9.0",
+    "sequelize": "^6.35.2",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "sequelize-cli": "^6.6.2"
+  }
 }

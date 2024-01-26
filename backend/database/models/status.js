@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       allowNull: false,
       unique: true,
-      type: DataTypes.String
+      type: DataTypes.STRING
     }
   }, {
     sequelize,

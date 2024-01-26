@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { Sequelize } = require('sequelize');
 const config = require('../config.js')
 
@@ -13,7 +15,7 @@ const sequelize = new Sequelize(config.db.database, config.db.user, config.db.pa
  */
 let modelsArr = [];
 fs
-  .readdirSync(__dirname + "\\models")
+  .readdirSync(path.join(__dirname, "models"))
   .forEach(file => {
     const model = require(`./models/${file}`)(sequelize, Sequelize.DataTypes);
     modelsArr[model.name] = model;

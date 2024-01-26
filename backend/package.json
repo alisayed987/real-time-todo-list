@@ -1,0 +1,19 @@
+{
+  "name": "real-time-todo-list",
+  "version": "1.0.0",
+  "description": "real time todo list that handles tasks for many users",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisayed987/real-time-todo-list.git"
+  },
+  "author": "Ali Sayed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alisayed987/real-time-todo-list/issues"
+  },
+  "homepage": "https://github.com/alisayed987/real-time-todo-list#readme"
+}

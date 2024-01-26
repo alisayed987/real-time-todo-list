@@ -1,6 +1,8 @@
 const express = require('express');
 const auth = require('./auth');
 
+const error = require('../middlewares/error');
+
 module.exports = function (app, sequelize) {
     app.use(express.json());
     app.use(
@@ -13,4 +15,6 @@ module.exports = function (app, sequelize) {
 
     // Expose public folder
     app.use(express.static('public'))
+
+    app.use(error)
 }

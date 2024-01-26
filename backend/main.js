@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const sequelize = require('./database/db');
 
-require('./routes/routes')(app);
+require('./routes/routes')(app, sequelize);
 
 port = process.env.APP_PORT;
 const server = app.listen(port, () => {

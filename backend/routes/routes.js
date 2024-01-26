@@ -1,6 +1,6 @@
 const express = require('express');
 
-module.exports = function (app) {
+module.exports = function (app, sequelize) {
     app.use(express.json());
     app.use(
         express.urlencoded({

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/auth");
 const _ = require('lodash')
+const { createTaskSchema, updateTaskSchema } = require('../validations/tasks.js')
+const validate = require('../middlewares/validate.js')
 
 module.exports = (sequelize) => {
   const Task = sequelize.models.Task;
@@ -60,12 +62,11 @@ module.exports = (sequelize) => {
   /**
    * CREATE task
    */
-  router.post('/', auth, auth, async (req, res) => {
+  router.post('/', validate(createTaskSchema), auth, async (req, res) => {
     const status = await Status.findAll({
         where: { "name" : req.body.statusName },
       });
 
-      console.log(status);
     if (!status.length) res.status(400).send("No status found with this name.") 
 
     const task = await Task.create({
@@ -80,9 +81,24 @@ module.exports = (sequelize) => {
   /**
    * UPDATE a task by id
    */
-  router.put('/:id', auth, async (req, res) => {
+  router.put('/:id', validate(updateTaskSchema), auth, async (req, res) => {
+    let updateBody = {};
+
+    /**
+     * Find status id if status would be updated
+     */
+    if (req.body.statusName) {
+      const status = await Status.findAll({
+        where: { "name" : req.body.statusName },
+      });
+      updateBody.statusId = status[0].id;
+    }
+
+    if (req.body.title) updateBody.title = req.body.title;
+    if (req.body.description) updateBody.title = req.body.description;
+
     const updated = await Task.update(
-      req.body,
+      updateBody,
       {
         where: {
           id: req.params.id

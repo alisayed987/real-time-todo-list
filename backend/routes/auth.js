@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const _ = require('lodash')
 const router = express.Router();
+const { registerSchema, loginSchema } = require('../validations/auth.js')
+const validate = require('../middlewares/validate.js')
 
 module.exports = (sequelize) => {
   const User = sequelize.models.User;
@@ -10,7 +12,7 @@ module.exports = (sequelize) => {
    * req: Login using email & password
    * res: jwt token
    */
-  router.post('/login', async (req, res) => {
+  router.post('/login', validate(loginSchema), async (req, res) => {
     const user = await User.findOne({ where: { email: req.body.email }});
     if (!user) return res.status(400).send('Invalid email or password.');
 
@@ -25,7 +27,7 @@ module.exports = (sequelize) => {
    * req: Register using name & email & password & phone_number
    * res: new user + header token
    */
-  router.post('/register', async (req, res) => {
+  router.post('/register', validate(registerSchema), async (req, res) => {
     try {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.body.password, salt);

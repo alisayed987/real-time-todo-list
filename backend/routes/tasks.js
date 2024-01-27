@@ -11,6 +11,20 @@ module.exports = (sequelize) => {
    * GET authenticated user tasks
    */
   router.get("/", auth, async (req, res) => {
+    /**
+     * Default pagination values
+     */
+    let page = 1;
+    let pageSize = 8;
+
+    /**
+     * Handle tasks pagination
+     */
+    if (pagination = req.body.pagination) {
+      if (pagination.page) page = pagination.page;
+      if (pagination.pageSize) pageSize = pagination.pageSize;
+    }
+    
     const tasks = await Task.findAll({
       where: { "userId" : req.user.id },
       include: [
@@ -18,6 +32,8 @@ module.exports = (sequelize) => {
           model: sequelize.models.Status,
         },
       ],
+      offset: ((page - 1) * pageSize),
+      limit: pageSize
     });
 
     res.send(tasks);

@@ -3,6 +3,8 @@ const auth = require('./auth');
 
 const error = require('../middlewares/error');
 
+const tasks = require('./tasks');
+
 module.exports = function (app, sequelize) {
     app.use(express.json());
     app.use(
@@ -12,6 +14,7 @@ module.exports = function (app, sequelize) {
     );
     
     app.use('/', auth(sequelize));
+    app.use('/api/tasks', tasks(sequelize));
 
     // Expose public folder
     app.use(express.static('public'))

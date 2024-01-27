@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/auth");
 const _ = require('lodash')
+const { createStatusSchema, updateStatusSchema } = require('../validations/statuses.js')
+const validate = require('../middlewares/validate.js')
 
 module.exports = (sequelize) => {
   const Status = sequelize.models.Status;
@@ -30,7 +32,7 @@ module.exports = (sequelize) => {
   /**
    * CREATE status
    */
-  router.post('/', auth, auth, async (req, res) => {
+  router.post('/', validate(createStatusSchema), auth, async (req, res) => {
     const status = await Status.create({
         name: req.body.name
     })
@@ -41,7 +43,7 @@ module.exports = (sequelize) => {
   /**
    * UPDATE a status by id
    */
-  router.put('/:id', auth, async (req, res) => {
+  router.put('/:id', validate(updateStatusSchema), auth, async (req, res) => {
     const updated = await Status.update(
       req.body,
       {

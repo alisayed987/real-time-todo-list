@@ -13,6 +13,11 @@ module.exports = function (app, sequelize) {
             extended: true,
         })
     );
+    app.use(cors({
+        origin: process.env.Frontend_Url,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
+    }));
     
     app.use('/', auth(sequelize));
     app.use('/api/tasks', tasks(sequelize));

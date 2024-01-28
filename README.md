@@ -21,7 +21,10 @@
 3) Run <code> npm start </code>
    
 ## - Screenshots
+Todo List:
 ![Todo List](./images/todo.png "Todo List")
 
+<div>
 <img src="/images/login.png" width="380">
 <img src="/images/todo-edit.png" width="380">
+</div>

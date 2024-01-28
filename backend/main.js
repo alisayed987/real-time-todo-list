@@ -13,7 +13,13 @@ const server = app.listen(port, () => {
     console.log(`Todo backend listening at http://localhost:${port}`);
 });
 
-const io = socketIo(server);
+const io = socketIo(server,  {
+    cors: {
+      origin: process.env.Frontend_Url,
+      methods: ['GET', 'POST']
+    }
+});
+
 require('./sockets/connections')(io, sequelize);
 
 module.exports = server;

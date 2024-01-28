@@ -48,7 +48,6 @@ module.exports = function (io, sequelize) {
      */
     socket.on("addTask", async (body) => {
       try {
-        body = JSON.parse(body)
         const { error } = createTaskSchema.validate(body);
         if (error) throw error;
         const task = await createTask(userId, body, sequelize);
@@ -66,7 +65,6 @@ module.exports = function (io, sequelize) {
     socket.on("updateTask", async (taskId, updatedTaskData) => {
       try {
         console.log(taskId, updatedTaskData);
-        updatedTaskData = JSON.parse(updatedTaskData)
         const { error } = updateTaskSchema.validate(updatedTaskData);
         if (error) throw error;
         await updateTask(taskId, userId, updatedTaskData, sequelize);

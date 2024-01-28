@@ -39,7 +39,10 @@ module.exports = (sequelize) => {
       });
 
       const token = user.generateAuthToken();
-      res.header('x-auth-token', token).send(_.pick(user, ['id', 'name', 'email']));
+      res.send({
+        ..._.pick(user, ['id', 'name', 'email']),
+        token: token
+      });
     } catch (error) {
       res.status(500).send(error);
     }

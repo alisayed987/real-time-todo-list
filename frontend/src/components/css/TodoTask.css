@@ -1,0 +1,35 @@
+.todo-task {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-task h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .todo-task p {
+    color: #666;
+  }
+  
+  .todo-task button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .todo-task button:hover {
+    background-color: #45a049;
+  }
+  

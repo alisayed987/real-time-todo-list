@@ -111,7 +111,7 @@ module.exports.updateTask = async (taskId, userId, data, sequelize) => {
   }
 
   if (data.title) updateBody.title = data.title;
-  if (data.description) updateBody.title = data.description;
+  if (data.description) updateBody.description = data.description;
 
   const isUpdated = await Task.update(updateBody, {
     where: {
